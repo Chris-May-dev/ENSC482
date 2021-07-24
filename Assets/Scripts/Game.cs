@@ -11,7 +11,7 @@ Pentagon - 3
 Star - 4
 */
 
-//DontDestroyOnLoad
+//DontDestroyOnLoad test  
 
 public class Game : MonoBehaviour
 {
