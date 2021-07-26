@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
     public GameObject webcam;
     public bool showWebcam = false;
 
-    public WebcamCameraScript snapCam;
+    public Webcam snapCam;
 
     bool temp = false;
 
