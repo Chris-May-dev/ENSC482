@@ -5,6 +5,9 @@ using UnityEngine;
 public class Webcam : MonoBehaviour
 {
     WebCamTexture tex;
+    //Establish grid of image seperation
+    int numOfWid = 4;
+    int numOfHigh = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -51,8 +54,8 @@ public class Webcam : MonoBehaviour
         int y = 0;
         int picNumber = 0;
 
-        gridWidth = imgWidth / 4;
-        gridHeight = imgHeight / 3;
+        gridWidth = imgWidth / numOfWid;
+        gridHeight = imgHeight / numOfHigh;
 
         //Full Pic and declerations
         Texture2D snap = new Texture2D(tex.width, tex.height);
@@ -64,9 +67,9 @@ public class Webcam : MonoBehaviour
         System.IO.File.WriteAllBytes(fileName, bytes);
 
         //grid pics 1 - 12 taken
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < numOfHigh; i++)
         {
-            for(int k = 0; k < 4; k++)
+            for(int k = 0; k < numOfWid; k++)
             {
                 picNumber++;
                 snap = new Texture2D(gridWidth, gridHeight);

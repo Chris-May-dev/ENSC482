@@ -27,6 +27,7 @@ public class Game : MonoBehaviour
     public GameObject exit;
     public GameObject next;
     public GameObject webcam;
+    public GameObject ObjectGrid;
     public bool showWebcam = false;
 
     public Webcam snapCam;
@@ -43,6 +44,7 @@ public class Game : MonoBehaviour
         HideObject(next);
         HideObject(exit);
         HideObject(webcam);
+        HideObject(ObjectGrid);
 
         Level();
 
@@ -58,10 +60,12 @@ public class Game : MonoBehaviour
             timeValue.timeValue = 10;
             showWebcam = true;
             ShowObject(webcam);
+            ShowObject(ObjectGrid);
         }
         else if (timeValue.timeValue == 0 && showWebcam == true)
         {
             HideObject(webcam);
+            HideObject(ObjectGrid);
             temp = true;
         }
 
@@ -76,11 +80,14 @@ public class Game : MonoBehaviour
         {
             ShowObject(next);
             HideObject(webcam);
+            HideObject(ObjectGrid);
+
         }
         if (Failed)
         {
             ShowObject(exit);
             HideObject(webcam);
+            HideObject(ObjectGrid);
         }
 
     }
