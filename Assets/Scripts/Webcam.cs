@@ -6,8 +6,8 @@ public class Webcam : MonoBehaviour
 {
     WebCamTexture tex;
     //Establish grid of image seperation
-    int numOfWid = 4;
-    int numOfHigh = 3;
+    int numOfWid = 3;
+    int numOfHigh = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class Webcam : MonoBehaviour
         Renderer rend = this.GetComponentInChildren<Renderer>();
 
         // assuming the first available WebCam is desired
-        tex = new WebCamTexture(devices[1].name);
+        tex = new WebCamTexture(devices[0].name);
         rend.material.mainTexture = tex;
         tex.Play();
     }
@@ -36,7 +36,7 @@ public class Webcam : MonoBehaviour
 
     string SnapShotName(int picNumber)
     {
-        return string.Format("{0}/Snapshots/snap_{1}_.png",
+        return string.Format("{0}/Snapshots/snap_{1}.png",
             Application.dataPath,
             picNumber,
             System.DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss"));

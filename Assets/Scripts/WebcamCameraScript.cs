@@ -47,7 +47,7 @@ public class WebcamCameraScript : MonoBehaviour
 
     string SnapShotName()
     {
-        return string.Format("{0}/Snapshots/snap_{1}x{2}_.png",
+        return string.Format("{0}/Snapshots/snap{1}.png",
             Application.dataPath,
             resWidth, resHeight,
             System.DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss"));
