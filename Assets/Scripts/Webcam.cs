@@ -50,12 +50,13 @@ public class Webcam : MonoBehaviour
         int imgWidth = tex.width;
         int imgHeight = tex.height;
         int gridWidth, gridHeight;
-        int x = 0;
-        int y = 0;
         int picNumber = 0;
 
         gridWidth = imgWidth / numOfWid;
         gridHeight = imgHeight / numOfHigh;
+
+        int x = 0;
+        int y = imgHeight - gridHeight;
 
         //Full Pic and declerations
         Texture2D snap = new Texture2D(tex.width, tex.height);
@@ -69,7 +70,7 @@ public class Webcam : MonoBehaviour
         //grid pics 1 - 12 taken
         for (int i = 0; i < numOfHigh; i++)
         {
-            for(int k = 0; k < numOfWid; k++)
+            for (int k = 0; k < numOfWid; k++)
             {
                 picNumber++;
                 snap = new Texture2D(gridWidth, gridHeight);
@@ -82,11 +83,10 @@ public class Webcam : MonoBehaviour
                 x = x + gridWidth;
 
             }
-            y = y + gridHeight;
+            y = y - gridHeight;
             x = 0;
         }
         print("Snapshot Taken");
-
 
     }
 

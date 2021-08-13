@@ -21,6 +21,7 @@ Star - 4
 public class Game : MonoBehaviour
 {
 
+    public GameObject[] centres = new GameObject[6];
     int shapeTypes = 5;
     static int maxObjects = 20;
     int[] objects = new int[maxObjects];
@@ -106,13 +107,42 @@ public class Game : MonoBehaviour
             {
                 print("oops! file read error. try again");
             }
-        
-            print(lines[0]);
+
+
+
+            for (int i = 0; i<level+3;i++)
+            {
+                Passed = true;
+                if ((int.Parse(lines[5-i]) == objects[i]))
+                {
+                    print("good!");
+
+                }
+                else
+                {
+                    Passed = false;
+                    Failed = true;
+                    print(lines[5-i]);
+                    print(objects[i]);
+                    print(i);
+                }
+            }
+/*        if(int.Parse(lines[2]) == objects[0] && int.Parse(lines[1]) == objects[1] && int.Parse(lines[0]) == objects[2] &&
+           int.Parse(lines[5]) == objects[3] && int.Parse(lines[4]) == objects[4] && int.Parse(lines[3]) == objects[5])
+            {
+                Passed = true;
+    
+            }
+        else
+            {
+                Failed = true;
+            }*/
+           /* print(lines[0]);
             print(lines[1]);
             print(lines[2]);
             print(lines[3]);
             print(lines[4]);
-
+            print(lines[5]);*/
             //checkAnswers(lines);
         }
 
@@ -124,6 +154,7 @@ public class Game : MonoBehaviour
             ShowObject(next);
             HideObject(webcam);
             HideObject(ObjectGrid);
+            Passed = false;
 
         }
         if (Failed)
@@ -132,6 +163,7 @@ public class Game : MonoBehaviour
             ShowObject(exit);
             HideObject(webcam);
             HideObject(ObjectGrid);
+            Failed = false;
         }
 
     }
@@ -184,7 +216,7 @@ public class Game : MonoBehaviour
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
-            objects[i] = Random.Range(0, shapeTypes + 1);
+            objects[i] = Random.Range(0, shapeTypes );
         }
     }
 
@@ -193,7 +225,7 @@ public class Game : MonoBehaviour
     //Post: Deletes Gameobjects after set time
     void CreatePattern()
     {
-        float position = numberOfObjects * (-1.6f) + 1.6f;      //Object Spacing (Centering)
+        //float position = numberOfObjects * (-1.6f) + 1.6f;      //Object Spacing (Centering)
         int points = 3;
 
         for (int i = 0; i < numberOfObjects; i++)       
@@ -233,14 +265,14 @@ public class Game : MonoBehaviour
             float randomG = Random.Range(50, 256);
             float randomB = Random.Range(50, 256);
 
-            shapes.transform.position = new Vector3(position, 0, 0);
+            shapes.transform.position = centres[i].transform.position;//new Vector3(position, 0, 0);
             shapes.AddComponent<MeshFilter>();
             shapes.AddComponent<MeshRenderer>().material.color = new Color(randomR / 255, randomG / 255, randomB / 255, 0f);
             shapes.GetComponent<MeshRenderer>().material.shader = Shader.Find("Unlit/Color");
 
             
 
-            position += 3.2f;       //Object Spacing
+            //position += 3.2f;       //Object Spacing
             DestroyObjectDelayed(shapes, 5);
         }
     }
@@ -258,7 +290,7 @@ public class Game : MonoBehaviour
         timeValue.timeValue = 10f;
         level++;
         Level();
-        timeValue.timeValue = 5f;
+        timeValue.timeValue = 5f +level*2;
         Passed = false;
         HideObject(next);
     }
@@ -275,37 +307,23 @@ public class Game : MonoBehaviour
                 CreatePattern();
                 break;
             case 1:
-                numberOfObjects = 5;
+                numberOfObjects = 4;
                 Pattern();
                 CreatePattern();
                 break;
             case 2:
-                numberOfObjects = 6;
+                numberOfObjects = 5;
                 Pattern();
                 CreatePattern();
                 break;
             case 3:
-                numberOfObjects = 7;
+                numberOfObjects = 6;
                 Pattern();
                 CreatePattern();
                 break;
-            case 4:
-                numberOfObjects = 8;
-                Pattern();
-                CreatePattern();
-                break;
-            case 5:
-                numberOfObjects = 9;
-                Pattern();
-                CreatePattern();
-                break;
-            case 6:
-                numberOfObjects = 10;
-                Pattern();
-                CreatePattern();
-                break;
+
             default:
-                numberOfObjects = 11;
+                numberOfObjects = 6;
                 Pattern();
                 CreatePattern();
                 break;
