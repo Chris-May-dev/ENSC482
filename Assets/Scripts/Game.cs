@@ -20,7 +20,7 @@ Star - 4
 
 public class Game : MonoBehaviour
 {
-
+    string[] names = new string[5] { "Square", "Circle", "Triangle", "Pentagon", "Star" };
     public GameObject[] centres = new GameObject[6];
     int shapeTypes = 5;
     static int maxObjects = 20;
@@ -109,7 +109,7 @@ public class Game : MonoBehaviour
             }
 
 
-
+            //Prints debugging information, GOOD if the game and CNN agree, or info if not
             for (int i = 0; i<level+3;i++)
             {
                 Passed = true;
@@ -120,30 +120,14 @@ public class Game : MonoBehaviour
                 }
                 else
                 {
+
                     Passed = false;
                     Failed = true;
-                    print(lines[5-i]);
-                    print(objects[i]);
-                    print(i);
+                    print("You gave " + names[int.Parse(lines[5-i])]);
+                    print("We expected " + names[objects[i]]);
+                    print("For shape number "+ i +", when reading from left to right top to bottom");
                 }
             }
-/*        if(int.Parse(lines[2]) == objects[0] && int.Parse(lines[1]) == objects[1] && int.Parse(lines[0]) == objects[2] &&
-           int.Parse(lines[5]) == objects[3] && int.Parse(lines[4]) == objects[4] && int.Parse(lines[3]) == objects[5])
-            {
-                Passed = true;
-    
-            }
-        else
-            {
-                Failed = true;
-            }*/
-           /* print(lines[0]);
-            print(lines[1]);
-            print(lines[2]);
-            print(lines[3]);
-            print(lines[4]);
-            print(lines[5]);*/
-            //checkAnswers(lines);
         }
 
 
@@ -166,20 +150,6 @@ public class Game : MonoBehaviour
             Failed = false;
         }
 
-    }
-
-
-    public void checkAnswers( string[] answers)
-    {
-        Passed = true;
-        for(int i=0; i<answers.Length; i++)
-
-        {
-            if (int.Parse(answers[i]) != objects[i])
-            {
-                Passed = false;
-            }
-        }
     }
 
     public void Initialize()
